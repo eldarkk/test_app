@@ -46,10 +46,3 @@ class MessagesRemoteDataSource implements MessagesDataSource {
     }
   }
 }
-
-String cleanJson(String input) {
-  return input.replaceAllMapped(
-    RegExp(r',(\s*[\]}])'),
-    (match) => match.group(1)!,
-  );
-}
