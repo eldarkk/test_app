@@ -17,7 +17,7 @@ class Message {
     sender: json['sender'],
     modifiedAt:
         json['modified_at'] != null && json['modified_at'] is int
-            ? DateTime.fromMillisecondsSinceEpoch(json['modified_at'])
+            ? DateTime.fromMillisecondsSinceEpoch(json['modified_at']).toLocal()
             : null,
   );
 

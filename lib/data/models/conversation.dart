@@ -3,7 +3,7 @@ class Conversation {
   String lastMessage;
   List<String> members;
   String topic;
-  int modifiedAt;
+  DateTime? modifiedAt;
 
   Conversation({
     required this.id,
@@ -18,6 +18,9 @@ class Conversation {
     lastMessage: json["last_message"],
     members: List<String>.from(json["members"].map((x) => x)),
     topic: json["topic"],
-    modifiedAt: json["modified_at"],
+    modifiedAt:
+        json['modified_at'] != null && json['modified_at'] is int
+            ? DateTime.fromMillisecondsSinceEpoch(json['modified_at']).toLocal()
+            : null,
   );
 }
