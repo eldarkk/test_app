@@ -15,7 +15,7 @@ class ConversationCubit extends Cubit<ConversationState> {
   ConversationCubit({required this.messagesRepository})
     : super(ConversationInitial());
 
-  List<Message> _messages = [];
+  final List<Message> _messages = [];
 
   Future<void> fetchMessages(String conversationId) async {
     emit(ConversationLoading());
@@ -23,7 +23,7 @@ class ConversationCubit extends Cubit<ConversationState> {
     result.fold((error) => emit(ConversationError(error.toString())), (
       messages,
     ) {
-      _messages = messages;
+      _messages.addAll(messages);
       emit(ConversationLoaded(_messages));
     });
   }
